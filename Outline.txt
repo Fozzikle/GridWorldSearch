@@ -1,0 +1,13 @@
+We want to create a 10x10 grid and let the user determine a start and end position on the grid along with some potential
+obastacles. The start position will be coloured green and the end position coloured red. The grid will have a
+dark-grey-ish blue squares with darkblue grid lines and background (colours of are subject to change). On the right
+hand-side of the grid, a dashboard will outline the search algorithm in use (time space complexity, description how it
+works, and avg speed). Below this, the dashboard will show live running data (tbd what this includes). Lastly, a legend
+and controls guide will fillout the remaining space of the dashboard.
+
+Components of GridWorldSearch
+-UI
+-Utilised algorithms
+-Obstacles
+-
+
