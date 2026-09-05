@@ -1,10 +1,9 @@
 class GridFrontEnd:
-    def __init__(self, canvas, rows: int, cols: int):
+    def __init__(self, canvas, rows: int, cols: int, cell_size: int):
         self.canvas = canvas
         self.id_map = {}
 
         # Creating grid of rectangles (fill colour is temp for now)
-        cell_size = 20
         for i in range(rows):
             for j in range(cols):
                 x1: int = i * cell_size
