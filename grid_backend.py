@@ -9,3 +9,6 @@ class GridBackEnd:
     def set_state(self, row: int, col: int, state: str) -> None:
         self.states[(row, col)] = state
         return
+
+    def check_state(self, row: int, col: int) -> str:
+        return self.states[(row, col)]
