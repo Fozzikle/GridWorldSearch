@@ -3,7 +3,7 @@ from grid_backend import GridBackEnd
 from grid_connect import GridController
 from grid_frontend import GridFrontEnd
 
-# TODO: prevent wall from overriding start or end.
+# TODO: if resetting start remember only to add new start location and not a new end location
 def cell_press(event):
     global press_count
 
@@ -13,19 +13,19 @@ def cell_press(event):
     print("Selected rectangle", row, col)
 
     # TODO: fix
-    # if model_backend.check_state(row, col) == "Start":
-    #     state: str = "OFF"
-    #     press_count = 0
+    if model_backend.check_state(row, col) == "Start":
+        state: str = "OFF"
+        press_count = 0
 
     if press_count == 0:
         state: str = "START"
         press_count += 1
 
-    elif press_count == 1:
+    elif press_count == 1 and model_backend.check_state(row, col) == "OFF":
         state: str = "END"
         press_count += 1
 
-    else:
+    elif press_count > 1 and model_backend.check_state(row, col) == "OFF":
         state: str = "WALL"
         press_count += 1
 
