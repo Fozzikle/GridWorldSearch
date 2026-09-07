@@ -4,7 +4,7 @@ from grid_connect import GridController
 from grid_frontend import GridFrontEnd
 
 # TODO: if resetting start remember only to add new start location and not a new end location
-def cell_press(event):
+def cell_press(event) -> None:
     global press_count
 
     print('Got object click', event.x, event.y)
@@ -12,12 +12,12 @@ def cell_press(event):
     col = event.y // cell_size
     print("Selected rectangle", row, col)
 
-    # TODO: fix
+    # TODO: state is not being passed when altering a non off cell cause for error
     if model_backend.check_state(row, col) == "Start":
         state: str = "OFF"
         press_count = 0
 
-    if press_count == 0:
+    if press_count == 0 and model_backend.check_state(row, col) == "OFF":
         state: str = "START"
         press_count += 1
 
