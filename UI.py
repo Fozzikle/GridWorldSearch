@@ -3,7 +3,7 @@ from grid_backend import GridBackEnd
 from grid_connect import GridController
 from grid_frontend import GridFrontEnd
 
-# TODO: if resetting start remember only to add new start location and not a new end location
+# TODO: if resetting start remember only to add new start location and not a new end location i.e. press_count needs to be smarter
 def cell_press(event) -> None:
     global press_count
 
