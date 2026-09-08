@@ -48,6 +48,7 @@ press_count = 0
 
 # Reset button
 # TODO: Add reset button
+reset = tk.Button(canvas, text="Reset Grid", width=40, height=5, command=controller.reset_grid())
 
 # Adding button actions to the cells
 canvas.bind("<Button-1>", cell_press)

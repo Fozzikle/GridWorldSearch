@@ -4,14 +4,14 @@ class GridController:
         self.backend = backend
 
     # Defining attribute map for state
-    _colour_map = {
+    __colour_map = {
         "OFF": "blue",
         "WALL": "black",
         "START": "green",
         "END": "red"
     }
     def get_colour_map(self) -> dict:
-        return self._colour_map
+        return self.__colour_map
 
     def update_cell(self, row: int, col: int, new_state: str) -> None:
         """
@@ -24,6 +24,19 @@ class GridController:
         :return:
         """
         self.backend.states[(row, col)] = new_state
-        updated_colour: str = self._colour_map[new_state]
+        updated_colour: str = self.__colour_map[new_state]
         self.frontend.set_state(row, col, updated_colour)
+        return
+    def reset_grid(self) -> None:
+
+        # 1. iterate through backend reset all states to 'OFF'
+        # TODO
+
+        # # iterate through frontend, changing colour state to OFF
+        # TODO: check if len(frontend) iterates whole array or just i/j
+        updated_colour: str = self.__colour_map["OFF"]
+        for i in range(len(self.frontend.states)):
+            for j in range(len(self.frontend.states)):
+                self.frontend.set_state(i, j, updated_colour)
+
         return
