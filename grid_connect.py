@@ -16,8 +16,12 @@ class GridController:
     def update_cell(self, row: int, col: int, new_state: str) -> None:
         """
         This function updates the frontend and backend grids such that each cell's states are reflective in both.
-        Takes in the positional coordinates of row and column and applies the new state to the backend cell and updates the
-        rectangle's colour of the frontend based on the colour mapping defined in the file grid_connect.py
+        Takes in the positional coordinates of row and column and applies the new state to the backend cell and updates
+        the rectangle's colour of the frontend based on the colour mapping defined in the file grid_connect.py
+        :param row:
+        :param col:
+        :param new_state:
+        :return:
         """
         self.backend.states[(row, col)] = new_state
         updated_colour: str = self._colour_map[new_state]
