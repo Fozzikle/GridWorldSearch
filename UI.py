@@ -5,9 +5,17 @@ from grid_frontend import GridFrontEnd
 
 
 def cell_press(event) -> None:
+    """
+    Calls to update the frontend cell states such they match
+    :param event:
+    :return:
+    """
     global press_count
 
+    # Location of user click
     print('Got object click', event.x, event.y)
+
+    # Normalising user click to a cell reference
     row: int = event.x // cell_size
     col: int = event.y // cell_size
     print("Selected rectangle", row, col)
@@ -36,6 +44,7 @@ def reset_event() -> None:
     press_count = 0
 
 # making the window
+# TODO: make the window adjustable with the objects scaling to match
 root = tk.Tk()
 root.title("Grid World Search")
 
@@ -54,18 +63,19 @@ controller = GridController(model_frontend, model_backend)
 press_count = 0
 
 # Reset button
+# TODO: Format and stylise the button appropriately
 reset = tk.Button(canvas,
                   text="Reset Grid",
-                  width=40,
-                  height=5,
+                  width=20,
+                  height=1,
                   command=lambda: reset_event())
 reset.place(x=100, y=500)
 
 # Adding button actions to the cells
 canvas.bind("<Button-1>", cell_press)
 
-
 # Add side bar
 # TODO: as per outline documentation
+
 
 root.mainloop()

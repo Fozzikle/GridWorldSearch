@@ -4,6 +4,7 @@ class GridController:
         self.backend = backend
 
     # Defining attribute map for state
+    # TODO: Added searched cell colour and fastest path colour
     __colour_map = {
         "OFF": "blue",
         "WALL": "black",
