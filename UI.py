@@ -9,8 +9,8 @@ def cell_press(event) -> None:
     state = "OFF"
 
     print('Got object click', event.x, event.y)
-    row = event.x // cell_size
-    col = event.y // cell_size
+    row: int = event.x // cell_size
+    col: int = event.y // cell_size
     print("Selected rectangle", row, col)
 
     if press_count == 0:
@@ -48,13 +48,16 @@ press_count = 0
 
 # Reset button
 # TODO: Add reset button
-reset = tk.Button(canvas, text="Reset Grid", width=40, height=5, command=controller.reset_grid())
+# TODO: figure out why the reset action is breaking frontend grid set
+
+reset = tk.Button(canvas, text="Reset Grid", width=40, height=5, command=controller.update_cell(row, col, "OFF"))
+reset.place(x=100, y=500)
 
 # Adding button actions to the cells
 canvas.bind("<Button-1>", cell_press)
 
 
 # Add side bar
-# TODO
+# TODO: as per outline documentation
 
 root.mainloop()

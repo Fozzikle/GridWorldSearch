@@ -15,10 +15,17 @@ class GridFrontEnd:
                 self.id_map[(i, j)] = cell_id
 
     def set_state(self, row: int, col: int, state: str) -> None:
+        """
+        Sets the visual state of a given cell
+        :param row: length of rows
+        :param col: length of columns
+        :param state: the new state of the cell
+        :return None:
+        """
         try:
             cell_id = self.id_map[(row, col)]
             self.canvas.itemconfig(cell_id, fill=state)
         except KeyError:
             print("Failed to set state!")
-            print("set_state(row, col, state)")
+            print("set_state(row, col, state)", end='')
             exit(1)
