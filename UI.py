@@ -11,6 +11,8 @@ def cell_press(event) -> None:
     :return:
     """
     global press_count
+    global start
+    global end
 
     # Location of user click
     print('Got object click', event.x, event.y)
@@ -24,10 +26,12 @@ def cell_press(event) -> None:
     if press_count == 0:
         state: str = "START"
         press_count += 1
+        start = (row, col)
 
     elif press_count == 1:
         state: str = "END"
         press_count += 1
+        end = (row, col)
 
     elif press_count > 1 and GridBackEnd.check_state(model_backend, row, col) == "OFF":
         state: str = "WALL"
@@ -61,6 +65,8 @@ model_backend = GridBackEnd(row, col)
 # Selections
 controller = GridController(model_frontend, model_backend)
 press_count = 0
+start = ()
+end = ()
 
 # Reset button
 # TODO: Format and stylise the button appropriately
