@@ -47,9 +47,7 @@ controller = GridController(model_frontend, model_backend)
 press_count = 0
 
 # Reset button
-# TODO: Add reset button
-# TODO: figure out why the reset action is breaking frontend grid set
-
+# TODO: figure out why the reset action is breaking frontend grid set (most likely the command is being ran at start)
 reset = tk.Button(canvas, text="Reset Grid", width=40, height=5, command=controller.update_cell(row, col, "OFF"))
 reset.place(x=100, y=500)
 
