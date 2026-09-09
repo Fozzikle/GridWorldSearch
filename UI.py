@@ -1,6 +1,4 @@
 import tkinter as tk
-
-import grid_backend
 from grid_backend import GridBackEnd
 from grid_connect import GridController
 from grid_frontend import GridFrontEnd
@@ -56,7 +54,6 @@ controller = GridController(model_frontend, model_backend)
 press_count = 0
 
 # Reset button
-# TODO: figure out why the reset action is breaking frontend grid set (most likely the command is being ran at start)
 reset = tk.Button(canvas,
                   text="Reset Grid",
                   width=40,
