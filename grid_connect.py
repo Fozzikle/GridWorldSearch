@@ -42,4 +42,4 @@ class GridController:
                 self.backend.states[i, j] = state
                 update_colour: str = self.__colour_map[state]
                 self.frontend.set_state(i, j, update_colour)
-                return
+        return

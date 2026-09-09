@@ -1,4 +1,6 @@
 import tkinter as tk
+
+import grid_backend
 from grid_backend import GridBackEnd
 from grid_connect import GridController
 from grid_frontend import GridFrontEnd
@@ -6,12 +8,12 @@ from grid_frontend import GridFrontEnd
 
 def cell_press(event) -> None:
     global press_count
-    state = "OFF"
 
     print('Got object click', event.x, event.y)
     row: int = event.x // cell_size
     col: int = event.y // cell_size
     print("Selected rectangle", row, col)
+    state = model_backend.check_state(row, col)
 
     if press_count == 0:
         state: str = "START"
@@ -27,6 +29,13 @@ def cell_press(event) -> None:
 
     controller.update_cell(row, col, state)
     return
+
+
+def reset_event() -> None:
+    global press_count
+
+    controller.reset_grid(row, col, "OFF")
+    press_count = 0
 
 # making the window
 root = tk.Tk()
@@ -48,7 +57,11 @@ press_count = 0
 
 # Reset button
 # TODO: figure out why the reset action is breaking frontend grid set (most likely the command is being ran at start)
-reset = tk.Button(canvas, text="Reset Grid", width=40, height=5, command=controller.update_cell(row, col, "OFF"))
+reset = tk.Button(canvas,
+                  text="Reset Grid",
+                  width=40,
+                  height=5,
+                  command=lambda: reset_event())
 reset.place(x=100, y=500)
 
 # Adding button actions to the cells
