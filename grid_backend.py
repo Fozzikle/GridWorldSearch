@@ -1,10 +1,22 @@
-import Node
-# TODO: Transform backend into linked list
+from node import Node
+
+
 class GridBackEnd:
     def __init__(self, rows, cols):
-        self.nodes = Node
+        self.grid = {}
 
-    # construct nodes
+        # construct nodes
+        for i in range(rows):
+            for j in range(cols):
+                self.grid[i, j] = Node(state="OFF", row=i, col=j)
+
+                if j > 0:
+                    self.grid[i, j].next_up = self.grid[i, j - 1]
+                    self.grid[i, j - 1].next_down = self.grid[i, j]
+
+                if i > 0:
+                    self.grid[i, j].next_left = self.grid[i - 1, j]
+                    self.grid[i - 1, j].next_right = self.grid[i, j]
 
 
     def set_state(self, row: int, col: int, state: str) -> None:
@@ -15,7 +27,7 @@ class GridBackEnd:
         :param state: the new state of the cell
         :return None:
         """
-        self.states[(row, col)] = state
+        self.grid[(row, col)].state = state
         return
 
     def check_state(self, row: int, col: int) -> str:
@@ -26,4 +38,4 @@ class GridBackEnd:
         :param col: length of columns
         :return str: the state of the referenced cell
         """
-        return self.states[(row, col)]
+        return self.grid[(row, col)].state
