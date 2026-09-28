@@ -1,10 +1,11 @@
+import Node
+# TODO: Transform backend into linked list
 class GridBackEnd:
     def __init__(self, rows, cols):
-        self.states = {}
-        # grid size
-        for i in range(rows):
-            for j in range (cols):
-                self.states[(i, j)] = "OFF"
+        self.nodes = Node
+
+    # construct nodes
+
 
     def set_state(self, row: int, col: int, state: str) -> None:
         """
