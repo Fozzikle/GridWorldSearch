@@ -6,5 +6,3 @@ class Node:
         self.next_left = None
         self.next_right = None
         self.previous = None
-
-# yhing
