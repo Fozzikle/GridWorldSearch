@@ -1,7 +1,10 @@
 import tkinter as tk
+
+import grid_backend
 from grid_backend import GridBackEnd
 from grid_connect import GridController
 from grid_frontend import GridFrontEnd
+from SearchAlgorithms.breadth_first_search import BreadthFirstSearch
 
 
 def cell_press(event) -> None:
@@ -37,7 +40,7 @@ def cell_press(event) -> None:
         state: str = "WALL"
         press_count += 1
 
-    controller.update_cell(row, col, state)
+    controller.update_node(row, col, state)
     return
 
 
@@ -46,6 +49,11 @@ def reset_event() -> None:
 
     controller.reset_grid(row, col, "OFF")
     press_count = 0
+
+def bfs() -> None:
+    bfs_object = BreadthFirstSearch(controller, model_backend.get_node(start), model_backend.get_node(end))
+    bfs_object.bfs()
+
 
 # making the window
 # TODO: make the window adjustable with the objects scaling to match
@@ -82,6 +90,14 @@ canvas.bind("<Button-1>", cell_press)
 
 # Add side bar
 # TODO: as per outline documentation
+
+# temp start button
+start_button = tk.Button(canvas,
+                         text="Start",
+                         width=20,
+                         height=1,
+                         command=lambda: bfs())
+start_button.place(x=400, y=500)
 
 
 root.mainloop()

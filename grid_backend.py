@@ -1,3 +1,5 @@
+from typing import Any
+
 from node import Node
 
 
@@ -39,3 +41,11 @@ class GridBackEnd:
         :return str: the state of the referenced cell
         """
         return self.grid[(row, col)].state
+
+    def get_node(self, position: list[int]) -> Node:
+        """
+        Converts coordinates into it's respective node.
+        :param position:
+        :return Node: referenced Node
+        """
+        return self.grid[position]
