@@ -13,8 +13,12 @@ class BreadthFirstSearch:
             item = queue.pop(0)
 
             if item.position == self.end.position:
-                shortest_path = self.find_shortest_path(came_from[self.end], shortest_path)
-                print(shortest_path)
+                shortest_path = self.find_shortest_path(came_from, shortest_path, came_from[self.end])
+                shortest_path.reverse()
+                for node in shortest_path:
+                    row, col = node.position
+                    if not (node.state == "START"):
+                        self.controller.update_node(row, col, "SHORTEST")
                 return
 
             if not (item.state == "CHECKED" or item.state == "WALL"):
@@ -38,8 +42,9 @@ class BreadthFirstSearch:
         return
 
     # TODO
-    def find_shortest_path(self, came_from, node, shortest_path):
-        node = came_from[node]
-        if came_from.state == "START":
+    def find_shortest_path(self, came_from, shortest_path, node):
+        shortest_path.append(node)
+        if node.state == "START":
             return shortest_path
-        return self.find_shortest_path(came_from, node=came_from[node], shortest_path.append(node))
+
+        return self.find_shortest_path(came_from, shortest_path, node=came_from[node])

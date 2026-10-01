@@ -10,8 +10,9 @@ class GridController:
         "WALL": "black",
         "START": "green",
         "END": "red",
-        "FRONTIER": "orange",
-        "CHECKED": "yellow"
+        "FRONTIER": "cyan",
+        "CHECKED": "RoyalBlue1",
+        "SHORTEST": "yellow"
     }
     def get_colour_map(self) -> dict:
         return self.__colour_map
