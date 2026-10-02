@@ -1,11 +1,16 @@
+from grid_connect import GridController
+from node import Node
+from node_state import NodeState
+
+
 class BreadthFirstSearch:
-    def __init__(self, controller, start, end):
-        self.controller = controller
-        self.start = start
-        self.end = end
+    def __init__(self, controller: GridController, start: Node, end: Node):
+        self.controller: GridController = controller
+        self.start: Node = start
+        self.end: Node = end
 
     def bfs(self):
-        queue = [self.start]
+        queue: list[Node] = [self.start]
         came_from = {}
         shortest_path = []
 
@@ -17,15 +22,15 @@ class BreadthFirstSearch:
                 shortest_path.reverse()
                 for node in shortest_path:
                     row, col = node.position
-                    if not (node.state == "START"):
-                        self.controller.update_node(row, col, "SHORTEST")
+                    if not (node.state == NodeState.START):
+                        self.controller.update_node(row, col, NodeState.SHORTEST)
                 return
 
-            if not (item.state == "CHECKED" or item.state == "WALL"):
+            if not (item.state == NodeState.CHECKED or item.state == NodeState.WALL):
                 # 'visiting' the node
                 row, col = item.position
-                if not (item.state == "START"):
-                    self.controller.update_node(row, col, "CHECKED")
+                if not (item.state == NodeState.START):
+                    self.controller.update_node(row, col, NodeState.CHECKED)
 
                 # visit neighbours of item
                 neighbours = [item.next_up, item.next_down, item.next_left, item.next_right]
@@ -33,18 +38,17 @@ class BreadthFirstSearch:
                     if n is None:
                         continue
 
-                    if not (n.state == "CHECKED" or n.state == "WALL" or n.state == "FRONTIER"):
+                    if not (n.state == NodeState.CHECKED or n.state == NodeState.WALL or n.state == NodeState.FRONTIER):
                         row, col = n.position
-                        if not (n.state == "START" or n.state == "END"):
-                            self.controller.update_node(row, col, "FRONTIER")
+                        if not (n.state == NodeState.START or n.state == NodeState.END):
+                            self.controller.update_node(row, col, NodeState.FRONTIER)
                         came_from[n] = item
                         queue.append(n)
         return
 
-    # TODO
     def find_shortest_path(self, came_from, shortest_path, node):
         shortest_path.append(node)
-        if node.state == "START":
+        if node.state == NodeState.START:
             return shortest_path
 
         return self.find_shortest_path(came_from, shortest_path, node=came_from[node])

@@ -1,9 +1,8 @@
 import tkinter as tk
-
-import grid_backend
 from grid_backend import GridBackEnd
 from grid_connect import GridController
 from grid_frontend import GridFrontEnd
+from node_state import NodeState
 from SearchAlgorithms.breadth_first_search import BreadthFirstSearch
 
 
@@ -27,17 +26,17 @@ def cell_press(event) -> None:
     state = model_backend.check_state(row, col)
 
     if press_count == 0:
-        state: str = "START"
+        state: NodeState = NodeState.START
         press_count += 1
         start = (row, col)
 
     elif press_count == 1:
-        state: str = "END"
+        state: NodeState = NodeState.END
         press_count += 1
         end = (row, col)
 
-    elif press_count > 1 and GridBackEnd.check_state(model_backend, row, col) == "OFF":
-        state: str = "WALL"
+    elif press_count > 1 and GridBackEnd.check_state(model_backend, row, col) == NodeState.OFF:
+        state: NodeState = NodeState.WALL
         press_count += 1
 
     controller.update_node(row, col, state)
@@ -47,7 +46,7 @@ def cell_press(event) -> None:
 def reset_event() -> None:
     global press_count
 
-    controller.reset_grid(row, col, "OFF")
+    controller.reset_grid(row, col, NodeState.OFF)
     press_count = 0
 
 def bfs() -> None:

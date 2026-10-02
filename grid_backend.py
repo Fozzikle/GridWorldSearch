@@ -1,6 +1,5 @@
-from typing import Any
-
 from node import Node
+from node_state import NodeState
 
 
 class GridBackEnd:
@@ -10,7 +9,7 @@ class GridBackEnd:
         # construct nodes
         for i in range(rows):
             for j in range(cols):
-                self.grid[i, j] = Node(state="OFF", row=i, col=j)
+                self.grid[i, j] = Node(state=NodeState.OFF, row=i, col=j)
 
                 if j > 0:
                     self.grid[i, j].next_up = self.grid[i, j - 1]
