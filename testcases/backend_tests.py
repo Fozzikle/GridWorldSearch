@@ -1,12 +1,13 @@
 import unittest
-from grid_backend import GridBackEnd
-from node import Node
+from Backend.grid_backend import GridBackEnd
+from Backend.node import Node
 
 class TestBackend(unittest.TestCase):
     rows = 20
     cols = 20
     backend = GridBackEnd(rows, cols)
 
+    # First run Tests
     def test_backend_state(self):
         self.assertIsInstance(self.backend, GridBackEnd)
 
@@ -17,6 +18,9 @@ class TestBackend(unittest.TestCase):
         for i in range(self.rows):
             for j in range(self.cols):
                 self.assertIsInstance(self.backend.grid[i, j], Node)
+
+    # Functions tests
+
 
 
 if "__name__" == "__main__":

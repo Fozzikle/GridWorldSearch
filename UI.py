@@ -1,9 +1,10 @@
 import tkinter as tk
-from grid_backend import GridBackEnd
+from Backend.grid_backend import GridBackEnd
 from grid_connect import GridController
 from grid_frontend import GridFrontEnd
-from node_state import NodeState
+from Backend.node_state import NodeState
 from SearchAlgorithms.breadth_first_search import BreadthFirstSearch
+from SearchAlgorithms.depth_first_search import DepthFirstSearch
 
 
 def cell_press(event) -> None:
@@ -53,6 +54,10 @@ def bfs() -> None:
     bfs_object = BreadthFirstSearch(controller, model_backend.get_node(start), model_backend.get_node(end))
     bfs_object.bfs()
 
+def dfs() -> None:
+    dfs_object = DepthFirstSearch(controller, model_backend.get_node(start), model_backend.get_node(end))
+    dfs_object.dfs()
+
 
 # making the window
 # TODO: make the window adjustable with the objects scaling to match
@@ -95,7 +100,7 @@ start_button = tk.Button(canvas,
                          text="Start",
                          width=20,
                          height=1,
-                         command=lambda: bfs())
+                         command=lambda: dfs())
 start_button.place(x=400, y=500)
 
 

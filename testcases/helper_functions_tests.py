@@ -1,7 +1,7 @@
 import unittest
-import helper_functions
-from node import Node
-from node_state import NodeState
+from SearchAlgorithms import helper_functions
+from Backend.node import Node
+from Backend.node_state import NodeState
 
 class TestHelperFunctions(unittest.TestCase):
     # Creating nodes of all the different states refer to NodeState class

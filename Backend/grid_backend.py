@@ -20,7 +20,7 @@ class GridBackEnd:
                     self.grid[i - 1, j].next_right = self.grid[i, j]
 
 
-    def set_state(self, row: int, col: int, state: str) -> None:
+    def set_state(self, row: int, col: int, state: NodeState) -> None:
         """
         Sets the states of each cell in grid (array since this is in the backend class).
         :param row: length of rows
@@ -31,7 +31,7 @@ class GridBackEnd:
         self.grid[(row, col)].state = state
         return
 
-    def check_state(self, row: int, col: int) -> str:
+    def check_state(self, row: int, col: int) -> NodeState:
         """
         The search algorithm will use this to determine the state of next cell/move and if the search is completed,
         blocked or another move is required.
