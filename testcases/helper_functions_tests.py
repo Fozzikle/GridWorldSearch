@@ -14,6 +14,9 @@ class TestHelperFunctions(unittest.TestCase):
     nodeOFF = Node(state=NodeState.OFF, row=None, col=None)
 
     def test_is_start_or_end(self):
+        # todo: add tests for wrong argument being passed
+
+        # Testing correct returns based on different states
         self.assertEqual(helper_functions.is_start_or_end(self.nodeStart), True)
         self.assertEqual(helper_functions.is_start_or_end(self.nodeEnd), True)
         self.assertEqual(helper_functions.is_start_or_end(self.nodeWALL), False)
@@ -23,6 +26,9 @@ class TestHelperFunctions(unittest.TestCase):
         self.assertEqual(helper_functions.is_start_or_end(self.nodeOFF), False)
 
     def test_is_checked_or_wall(self):
+        # todo: add tests for wrong argument being passed
+
+        # Testing correct returns based on different states
         self.assertEqual(helper_functions.is_checked_or_wall(self.nodeStart), False)
         self.assertEqual(helper_functions.is_checked_or_wall(self.nodeEnd), False)
         self.assertEqual(helper_functions.is_checked_or_wall(self.nodeWALL), True)
