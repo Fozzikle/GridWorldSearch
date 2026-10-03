@@ -1,6 +1,7 @@
 from grid_connect import GridController
 from node import Node
 from node_state import NodeState
+from helper_functions import is_checked_or_wall, is_start_or_end
 
 
 class BreadthFirstSearch:
@@ -26,7 +27,7 @@ class BreadthFirstSearch:
                         self.controller.update_node(row, col, NodeState.SHORTEST)
                 return
 
-            if not (item.state == NodeState.CHECKED or item.state == NodeState.WALL):
+            if not is_checked_or_wall(item):
                 # 'visiting' the node
                 row, col = item.position
                 if not (item.state == NodeState.START):
@@ -38,9 +39,9 @@ class BreadthFirstSearch:
                     if n is None:
                         continue
 
-                    if not (n.state == NodeState.CHECKED or n.state == NodeState.WALL or n.state == NodeState.FRONTIER):
+                    if not (is_checked_or_wall(n) or n.state == NodeState.FRONTIER):
                         row, col = n.position
-                        if not (n.state == NodeState.START or n.state == NodeState.END):
+                        if not is_start_or_end(n):
                             self.controller.update_node(row, col, NodeState.FRONTIER)
                         came_from[n] = item
                         queue.append(n)
