@@ -4,6 +4,7 @@ from node_state import NodeState
 from SearchAlgorithms.helper_functions import is_checked_or_wall, is_start_or_end, visit_neighbours, get_path_from_camefrom, path
 
 
+# TODO: When testing it is doing a bit of 'over searching' (checks other neighbours around the end as part of path)
 class DepthFirstSearch:
     def __init__(self, controller: GridController, start: Node, end: Node):
         self.controller: GridController = controller
