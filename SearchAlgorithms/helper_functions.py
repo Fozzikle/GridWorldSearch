@@ -1,6 +1,6 @@
 from grid_connect import GridController
-from Backend.node_state import NodeState
-from Backend.node import Node
+from node_state import NodeState
+from node import Node
 
 
 def is_start_or_end(node: Node) -> bool:

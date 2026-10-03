@@ -1,6 +1,6 @@
 from grid_connect import GridController
-from Backend.node import Node
-from Backend.node_state import NodeState
+from node import Node
+from node_state import NodeState
 from SearchAlgorithms.helper_functions import is_checked_or_wall, visit_neighbours, get_path_from_camefrom, path
 
 

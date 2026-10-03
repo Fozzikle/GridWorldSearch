@@ -1,8 +1,8 @@
 import tkinter as tk
-from Backend.grid_backend import GridBackEnd
+from grid_backend import GridBackEnd
 from grid_connect import GridController
 from grid_frontend import GridFrontEnd
-from Backend.node_state import NodeState
+from node_state import NodeState
 from SearchAlgorithms.breadth_first_search import BreadthFirstSearch
 from SearchAlgorithms.depth_first_search import DepthFirstSearch
 

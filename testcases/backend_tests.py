@@ -1,6 +1,6 @@
 import unittest
-from Backend.grid_backend import GridBackEnd
-from Backend.node import Node
+from grid_backend import GridBackEnd
+from node import Node
 
 class TestBackend(unittest.TestCase):
     rows = 20

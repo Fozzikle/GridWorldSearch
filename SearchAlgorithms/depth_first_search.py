@@ -1,6 +1,6 @@
 from grid_connect import GridController
-from Backend.node import Node
-from Backend.node_state import NodeState
+from node import Node
+from node_state import NodeState
 from SearchAlgorithms.helper_functions import is_checked_or_wall, is_start_or_end, visit_neighbours, get_path_from_camefrom, path
 
 
@@ -17,7 +17,9 @@ class DepthFirstSearch:
 
         self.step(stack, came_from)
 
+        # found path (starts from end)
         found_path = get_path_from_camefrom(came_from, shortest_path, came_from[self.end])
+        # corrects orientation and applies the visualisation
         path(self.controller, found_path)
         return
 

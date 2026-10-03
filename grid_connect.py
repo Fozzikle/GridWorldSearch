@@ -1,4 +1,4 @@
-from Backend.node_state import NodeState
+from node_state import NodeState
 
 
 class GridController:
