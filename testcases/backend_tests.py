@@ -28,9 +28,8 @@ class TestBackend(unittest.TestCase):
         rng = np.random.default_rng(1)
         for state in self.states:
             for i in range(100):
-                # todo: fix rng.integer
-                row = int(rng.integers(0, self.rows, 1))
-                col = int(rng.integers(0, self.cols, 1))
+                row = rng.integers(0, self.rows, 1).item()
+                col = rng.integers(0, self.cols, 1).item()
                 self.backend.set_state(row, col, state=state)
                 self.assertEqual(self.backend.grid[row, col].state, state)
 
@@ -38,13 +37,18 @@ class TestBackend(unittest.TestCase):
         rng = np.random.default_rng(1)
         for state in self.states:
             for i in range(100):
-                row = int(rng.integers(0, self.rows, 1))
-                col = int(rng.integers(0, self.cols, 1))
+                row = rng.integers(0, self.rows, 1).item()
+                col = rng.integers(0, self.cols, 1).item()
                 self.backend.grid[row, col].state = state
                 self.assertEqual(self.backend.check_state(row, col), state)
 
     def test_get_node(self):
-        pass
+        rng = np.random.default_rng(1)
+        for i in range(100):
+            row = rng.integers(0, self.rows, 1).item()
+            col = rng.integers(0, self.cols, 1).item()
+            self.assertIsInstance(self.backend.get_node((row, col)), Node)
+            self.assertEqual(self.backend.get_node((row, col)), self.backend.grid[row, col])
 
 
 
