@@ -27,7 +27,7 @@ class TestBackend(unittest.TestCase):
     def test_set_state(self):
         rng = np.random.default_rng(1)
         for state in self.states:
-            for i in range(100):
+            for i in range(100):    
                 row = rng.integers(0, self.rows, 1).item()
                 col = rng.integers(0, self.cols, 1).item()
                 self.backend.set_state(row, col, state=state)
