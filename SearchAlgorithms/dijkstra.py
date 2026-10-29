@@ -21,12 +21,9 @@ class Dijkstra:
         distance.update({self.start: (0, came_from[self.start])})
         hp.heappush(queue, (distance[self.start][0], self.start))
 
-
-
-
         # loop through heapq until empty and:
         while len(queue) > 0:
-            # todo: pop based on shortest distance
+            # popping shortest distance to start
             item: Node = hp.heappop(queue)[1]
 
             # record the distance from start to this node
@@ -38,7 +35,6 @@ class Dijkstra:
                     distance[item] = (item_distance, came_from[item])
 
             # add neighbours to queue
-            # todo: within visit neighbours set their distances to infinity
             neighbours = [item.next_up, item.next_down, item.next_left, item.next_right]
             for n in neighbours:
                 if n is None:
@@ -50,9 +46,8 @@ class Dijkstra:
                     if not is_start_or_end(n):
                         self.controller.update_node(row, col, NodeState.FRONTIER)
                     came_from[n] = item
-                    distance_from_neighbour: int = distance[came_from[item]][0] + distance[came_from[item]].weight
-                    distance.update({item: (distance_from_neighbour, came_from[item])})
-                    hp.heappush(queue, (distance[n][0], n))
+                    distance_from_neighbour: int = distance[came_from[item]][0] + distance[came_from[item]][1].weight
+                    hp.heappush(queue, (distance_from_neighbour, n))
 
             # repeat the search until it records the distance from the end node.
             # return the node trace of the shortest distance to end from start
