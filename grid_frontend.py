@@ -27,5 +27,5 @@ class GridFrontEnd:
             self.canvas.itemconfig(cell_id, fill=state)
         except KeyError:
             print("Failed to set state!")
-            print("set_state(row, col, state)")
+            print(f"passed row: {row} col: {col} state: {state}")
             exit(1)
